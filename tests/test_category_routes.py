@@ -1,27 +1,9 @@
 """Test module for category routes."""
 import json
-import unittest
-from app import create_app, db
-from app.models.category import Category
+from tests.base import BaseTestCase
 
-class TestCategoryRoutes(unittest.TestCase):
+class TestCategoryRoutes(BaseTestCase):
     """Test cases for category routes."""
-
-    def setUp(self):
-        """Set up test environment."""
-        self.app = create_app()
-        self.app.config['TESTING'] = True
-        self.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
-        self.client = self.app.test_client()
-        self.ctx = self.app.app_context()
-        self.ctx.push()
-        db.create_all()
-
-    def tearDown(self):
-        """Clean up test environment."""
-        db.session.remove()
-        db.drop_all()
-        self.ctx.pop()
 
     def test_get_categories_empty(self):
         """Test getting categories when none exist."""
@@ -135,6 +117,3 @@ class TestCategoryRoutes(unittest.TestCase):
         # Verify category is deleted
         get_response = self.client.get(f'/api/categories/{category_id}')
         self.assertEqual(get_response.status_code, 404)
-
-if __name__ == '__main__':
-    unittest.main()
