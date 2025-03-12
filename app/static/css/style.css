@@ -1,21 +1,21 @@
 .card {
-    @apply bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300;
+    @apply bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300 border border-gray-100;
 }
 
 .btn-primary {
-    @apply bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300;
+    @apply bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-300 font-medium;
 }
 
 .btn-secondary {
-    @apply bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition duration-300;
+    @apply bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-300 font-medium;
 }
 
 .btn-danger {
-    @apply bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300;
+    @apply bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition duration-300 font-medium;
 }
 
 .badge {
-    @apply px-2 py-1 rounded text-sm font-semibold mr-2;
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
 }
 
 .badge-high {
@@ -36,4 +36,12 @@
 
 .badge-completed {
     @apply bg-green-100 text-green-800;
+}
+
+.page-title {
+    @apply text-3xl font-bold text-gray-900 mb-8;
+}
+
+.text-muted {
+    @apply text-gray-600;
 }
