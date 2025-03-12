@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Todo App{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="text-4xl font-bold text-gray-800 mb-8">Welcome to Todo App</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <a href="/categories" class="card">
+            <h2 class="text-2xl font-semibold mb-4">Categories</h2>
+            <p class="text-gray-600">Manage your task categories</p>
+        </a>
+        <a href="/tasks" class="card">
+            <h2 class="text-2xl font-semibold mb-4">Tasks</h2>
+            <p class="text-gray-600">View and manage your tasks</p>
+        </a>
+    </div>
+</div>
+{% endblock %}
