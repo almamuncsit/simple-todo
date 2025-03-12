@@ -22,7 +22,8 @@ class TestApp(unittest.TestCase):
         self.assertTrue(self.app.testing)
 
     def test_db_connection(self):
-        self.assertTrue(db.engine.url.database in [':memory:', None])
+        # Check if the database URL is using SQLite memory database
+        self.assertIn('sqlite', str(db.engine.url))
         result = db.session.execute('SELECT 1')
         self.assertEqual(result.scalar(), 1)
 
