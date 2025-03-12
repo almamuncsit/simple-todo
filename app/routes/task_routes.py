@@ -4,6 +4,7 @@ from flask import Blueprint, request, jsonify
 from sqlalchemy.exc import IntegrityError
 from app.extensions import db
 from app.models.task import Task
+from app.models.category import Category
 
 bp = Blueprint('tasks', __name__, url_prefix='/api/tasks')
 
@@ -27,6 +28,12 @@ def create_task():
     if not data.get('title'):
         return jsonify({'error': 'Title is required'}), 400
 
+    # Validate category_id if provided
+    if data.get('category_id'):
+        category = Category.query.get(data['category_id'])
+        if not category:
+            return jsonify({'error': 'Invalid category ID'}), 400
+
     task = Task(
         title=data['title'],
         description=data.get('description', ''),
@@ -47,7 +54,7 @@ def create_task():
         return jsonify(task.to_dict()), 201
     except IntegrityError:
         db.session.rollback()
-        return jsonify({'error': 'Invalid category ID'}), 400
+        return jsonify({'error': 'Database error'}), 400
 
 @bp.route('/<int:task_id>', methods=['PUT'])
 def update_task(task_id):
