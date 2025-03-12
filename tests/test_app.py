@@ -1,6 +1,7 @@
 import unittest
 import os
 from app import create_app, db
+from sqlalchemy import text
 
 class TestApp(unittest.TestCase):
     def setUp(self):
@@ -24,7 +25,7 @@ class TestApp(unittest.TestCase):
     def test_db_connection(self):
         # Check if the database URL is using SQLite memory database
         self.assertIn('sqlite', str(db.engine.url))
-        result = db.session.execute('SELECT 1')
+        result = db.session.execute(text('SELECT 1'))
         self.assertEqual(result.scalar(), 1)
 
 if __name__ == '__main__':
