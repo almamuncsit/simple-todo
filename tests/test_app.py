@@ -1,6 +1,7 @@
 """Test module for Flask application."""
-from tests.base import BaseTestCase
 from sqlalchemy import text
+from tests.base import BaseTestCase
+from app.extensions import db
 
 class TestApp(BaseTestCase):
     """Test cases for Flask application."""
