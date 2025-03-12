@@ -1,9 +1,13 @@
 """Frontend routes module."""
-from flask import Blueprint, render_template
-from app.models.category import Category
-from app.models.task import Task
+from flask import Blueprint, render_template, current_app
+import requests
 
 bp = Blueprint('frontend', __name__)
+
+def get_api_url(endpoint):
+    """Get full API URL."""
+    server_name = current_app.config.get('SERVER_NAME', 'localhost:5000')
+    return f"http://{server_name}/api{endpoint}"
 
 @bp.route('/')
 def home():
@@ -13,11 +17,13 @@ def home():
 @bp.route('/categories')
 def categories():
     """Render categories page."""
-    all_categories = Category.query.all()
-    return render_template('categories.html', categories=all_categories)
+    response = requests.get(get_api_url('/categories/'))
+    categories_data = response.json() if response.ok else []
+    return render_template('categories.html', categories=categories_data)
 
 @bp.route('/tasks')
 def tasks():
     """Render tasks page."""
-    all_tasks = Task.query.all()
-    return render_template('tasks.html', tasks=all_tasks)
+    response = requests.get(get_api_url('/tasks/'))
+    tasks_data = response.json() if response.ok else []
+    return render_template('tasks.html', tasks=tasks_data)
