@@ -1,0 +1,26 @@
+{
+  "name": "simple-todo",
+  "version": "1.0.0",
+  "description": "I'll help you create a development plan for your Flask-based Todo application. Here's a structured approach:",
+  "main": "tailwind.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build-css": "tailwindcss -i ./app/static/css/input.css -o ./app/static/css/main.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/almamuncsit/simple-todo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/almamuncsit/simple-todo/issues"
+  },
+  "homepage": "https://github.com/almamuncsit/simple-todo#readme",
+  "devDependencies": {
+    "tailwindcss": "^4.0.13"
+  }
+}
