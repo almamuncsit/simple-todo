@@ -7,12 +7,12 @@ from app.routes import task_routes, category_routes
 
 def create_app():
     """Create and configure the Flask application."""
-    app = Flask(__name__)
-    app.config.from_object(Config)
+    flask_app = Flask(__name__)
+    flask_app.config.from_object(Config)
 
-    db.init_app(app)
+    db.init_app(flask_app)
 
-    app.register_blueprint(task_routes.bp)
-    app.register_blueprint(category_routes.bp)
+    flask_app.register_blueprint(task_routes.bp)
+    flask_app.register_blueprint(category_routes.bp)
 
-    return app
+    return flask_app
