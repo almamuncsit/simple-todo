@@ -1,6 +1,7 @@
 """Category model module."""
 from datetime import datetime
 from app.extensions import db
+from app.models.task import Task
 
 class Category(db.Model):
     """Category model class."""
