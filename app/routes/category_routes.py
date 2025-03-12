@@ -1,5 +1,6 @@
 """Category routes module."""
 from flask import Blueprint, request, jsonify
+from sqlalchemy.exc import IntegrityError
 from app.extensions import db
 from app.models.category import Category
 
@@ -11,10 +12,10 @@ def get_categories():
     categories = Category.query.all()
     return jsonify([category.to_dict() for category in categories])
 
-@bp.route('/<int:id>', methods=['GET'])
-def get_category(id):
+@bp.route('/<int:category_id>', methods=['GET'])
+def get_category(category_id):
     """Get a specific category."""
-    category = Category.query.get_or_404(id)
+    category = Category.query.get_or_404(category_id)
     return jsonify(category.to_dict())
 
 @bp.route('/', methods=['POST'])
@@ -34,14 +35,14 @@ def create_category():
         db.session.add(category)
         db.session.commit()
         return jsonify(category.to_dict()), 201
-    except Exception as e:
+    except IntegrityError:
         db.session.rollback()
         return jsonify({'error': 'Category name must be unique'}), 400
 
-@bp.route('/<int:id>', methods=['PUT'])
-def update_category(id):
+@bp.route('/<int:category_id>', methods=['PUT'])
+def update_category(category_id):
     """Update a category."""
-    category = Category.query.get_or_404(id)
+    category = Category.query.get_or_404(category_id)
     data = request.get_json()
     
     if 'name' in data:
@@ -52,19 +53,19 @@ def update_category(id):
     try:
         db.session.commit()
         return jsonify(category.to_dict())
-    except Exception as e:
+    except IntegrityError:
         db.session.rollback()
         return jsonify({'error': 'Category name must be unique'}), 400
 
-@bp.route('/<int:id>', methods=['DELETE'])
-def delete_category(id):
+@bp.route('/<int:category_id>', methods=['DELETE'])
+def delete_category(category_id):
     """Delete a category."""
-    category = Category.query.get_or_404(id)
+    category = Category.query.get_or_404(category_id)
     
     try:
         db.session.delete(category)
         db.session.commit()
         return '', 204
-    except Exception as e:
+    except IntegrityError:
         db.session.rollback()
         return jsonify({'error': 'Cannot delete category with associated tasks'}), 400
