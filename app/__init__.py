@@ -1,3 +1,6 @@
+# Add docstring for the module
+"""Flask application initialization module."""
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
@@ -5,6 +8,7 @@ from config import Config
 db = SQLAlchemy()
 
 def create_app():
+    """Create and configure the Flask application."""
     app = Flask(__name__)
     app.config.from_object(Config)
 

@@ -1,0 +1,20 @@
+[MASTER]
+ignore=CVS
+persistent=yes
+load-plugins=
+
+[MESSAGES CONTROL]
+disable=C0111,C0103,C0303,W0311,W0603,R0903,R0913,R0914,W0511
+
+[FORMAT]
+max-line-length=120
+indent-string='    '
+
+[BASIC]
+good-names=i,j,k,ex,Run,_,db,bp,id
+
+[SIMILARITIES]
+min-similarity-lines=4
+ignore-comments=yes
+ignore-docstrings=yes
+ignore-imports=yes
