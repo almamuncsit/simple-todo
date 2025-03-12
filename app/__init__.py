@@ -5,6 +5,9 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
 
+# Import blueprints at module level
+from app.routes import task_routes, category_routes
+
 db = SQLAlchemy()
 
 def create_app():
@@ -14,7 +17,6 @@ def create_app():
 
     db.init_app(app)
 
-    from app.routes import task_routes, category_routes
     app.register_blueprint(task_routes.bp)
     app.register_blueprint(category_routes.bp)
 
