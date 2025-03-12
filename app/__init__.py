@@ -1,14 +1,9 @@
-# Add docstring for the module
 """Flask application initialization module."""
 
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from config import Config
-
-# Import blueprints at module level
+from app.extensions import db
 from app.routes import task_routes, category_routes
-
-db = SQLAlchemy()
 
 def create_app():
     """Create and configure the Flask application."""

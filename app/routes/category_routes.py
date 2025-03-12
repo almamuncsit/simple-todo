@@ -1,6 +1,6 @@
 """Category routes module."""
 from flask import Blueprint, request, jsonify
-from app import db
+from app.extensions import db
 from app.models.category import Category
 
 bp = Blueprint('categories', __name__, url_prefix='/api/categories')

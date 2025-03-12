@@ -1,6 +1,6 @@
 """Category model module."""
 from datetime import datetime
-from app import db
+from app.extensions import db
 
 class Category(db.Model):
     """Category model class."""
