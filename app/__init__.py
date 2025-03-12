@@ -1,8 +1,8 @@
 """Flask application initialization module."""
-
 from flask import Flask
 from config import Config
 from app.extensions import db
+import app.models
 from app.routes import task_routes, category_routes
 
 def create_app():
