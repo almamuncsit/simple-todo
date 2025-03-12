@@ -89,7 +89,8 @@ class TestFrontendRoutes(BaseTestCase):
         Raises:
             AssertionError: If template is not found
         """
+        templates = self.app.jinja_env.list_templates()
         self.assertTrue(
-            template_name in [t.name for t in self.app.jinja_env.list_templates()],
-            f"Template {template_name} not found"
+            template_name in templates,
+            f"Template {template_name} not found in available templates: {templates}"
         )
