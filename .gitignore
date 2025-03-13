@@ -25,3 +25,6 @@ yarn-error.log
 
 # Project specific
 app/static/css/main.css
+temp_auto_push.bat
+temp_interactive_push.bat
+branch_structure.json
